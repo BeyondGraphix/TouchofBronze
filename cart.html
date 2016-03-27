@@ -182,10 +182,73 @@
 
     <!-- Plugin JavaScript -->
     <script src="js/jquery.easing.min.js"></script>
+	<script src="js/simpleCart.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+	simpleCart({
+	//var myCart = simpleCart({ 
 
 
-    <!-- Custom Theme JavaScript -->
-    <script src="js/grayscale.js"></script>
+			cartStyle: "table",
+			
+			checkout: {
+			type: "SendForm",
+			url: "cartorder.php",
+			
+
+
+			//type: "PayPal" , //original Simplecart 
+			//email: "your-shop@yourmail.com",
+			
+			// http method for form, "POST" or "GET", default is "POST"
+			method: "POST" ,
+			
+			// url to return to on successful checkout, default is null
+			success: "success.php" ,
+			
+			// url to return to on cancelled checkout, default is null
+			cancel: "cancel.php" ,
+			
+			extra_data: {
+				username: document.getElementById("username").value,
+				phone: document.getElementById("phone").value,
+				email: document.getElementById("email").value,
+			cartid: "12321321"
+		}
+	}
+
+	});
+
+	simpleCart.currency( "GHS" );
+
+	simpleCart.bind( 'beforeCheckout' , function( data ){
+			data.username = document.getElementById("username").value;
+			data.phone = document.getElementById("phone").value;
+			data.email = document.getElementById("email").value;
+	});
+
+
+	//console.log(myCart.checkout.extra_data); //view in your console
+
+	</script>
+
+    
+	<script src="js/jquery.validate.min.js"></script>
+	<script>
+	$.validator.setDefaults({
+		//submitHandler: function() { alert("submitted!"); }
+		submitHandler: function() { 
+		$("#SendOrderButton").show();
+		$("#submitvalidatedorder").hide();
+	 }
+
+	});
+
+	$().ready(function() {
+		// validate the comment form when it is submitted
+		$(".checkoutForm").validate();
+		$("#SendOrderButton").hide();
+	});
+	</script>
 
 </body>
 

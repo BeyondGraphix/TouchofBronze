@@ -55,12 +55,13 @@
       function initialize() {
         var mapCanvas = document.getElementById('map-canvas');
 		//var image = 'img/SquareOne01_icon1.png';
-		var myLatlng = new google.maps.LatLng(5.640501,-0.169836);
+		var myLatlng = new google.maps.LatLng(5.640603,-0.169789);
 		var myLatlng_EL = new google.maps.LatLng(5.659598,-0.146418);
         var mapOptions = {
           center: new google.maps.LatLng(5.640500, -0.169836),
           zoom: 18,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+		  scrollwheel: false,
+          mapTypeId: google.maps.MapTypeId.SATELLITE
         }
         var map = new google.maps.Map(mapCanvas, mapOptions)
 		
@@ -68,7 +69,7 @@
 		  position: myLatlng,
 		  map: map,
 		 //icon: image,
-		  title: 'SquareONE - Osu'
+		  title: 'Touch of Bronze - Gallery'
 	    });
 		
       }
